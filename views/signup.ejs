@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library API - Login</title>
+    <style>
+        /* Global styles */
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: url('https://img.freepik.com/premium-photo/library-interior-blurred-backgrounds-creative-projects-stylize-750-job-id-f85ccd0d0d284db389561a_841543-58971.jpg?size=626&ext=jpg&ga=GA1.1.1268874209.1722447087&semt=ais_hybrid') no-repeat center center/cover; /* Replace with your library-themed image */
+            background-size: cover;
+            filter: brightness(0.9); /* Slightly dim the background */
+            filter: blur(10);
+            background-color: purple;
+           
+        }
+
+        /* Library API title at the top-right */
+        .title {
+            position:fixed;
+            top: 20px;
+            /* right: 20px; */
+            font-size: 24px;
+            font-weight: bold;
+            color: #621c64;
+            text-align: center;
+            align-items: center;
+            border:1px solid rgb(209, 195, 195);
+            background: linear-gradient(45deg,blue,white);
+            border-radius: 10% ;
+             box-shadow: 0 4px 20px rgba(0, 0, 0, 1);
+        }
+        .form-group input::placeholder {
+    font-weight: bold;
+    color: #0a0431; /* Change this color to make it darker */
+}
+
+        /* Login form container with glassmorphism effect */
+        .form-container {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 1);
+    width: 350px;
+    max-width: 100%; /* Ensures it fits on smaller screens */
+    box-sizing: border-box; 
+    animation :fadeIn 3s ease;/* Includes padding in the width calculation */
+
+         }
+
+        h2 {
+            color:rgb(14, 13, 82);
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: #130808;
+        }
+        /* Form input fields */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            color: #130808;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+    font-weight: bold;
+    color: #000;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #2a518e;
+    outline: none;
+    width: 100%; /* Make the input take up the full width of the form container */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width */
+    padding-left: 30px; /* Space for the icon */
+    padding-bottom: 8px; /* Adjust space between text and border */
+}
+.form-group input:focus {
+    border-bottom-color: #005bb5; /* Changes the color of the underline when focused */
+    color: #333; /* Darkens the input text color when focused */
+}
+
+        .form-group .icon {
+            position: absolute;
+            /* top: 10px;
+            left: 5px; */
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        /* Button styles */
+        .btn {
+            width: 100px;
+            padding: 8px;
+            background: linear-gradient(45deg,rgb(29, 29, 181),rgb(96, 172, 220));
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            margin: 10px 0;
+          align-content: center;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg,rgb(49, 163, 205),rgb(27, 191, 112));
+        }
+
+        /* Signup link with jiggle animation on hover */
+        .signup-link {
+            display: block;
+            margin-top: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+
+        .signup-link:hover {
+            transform: rotate(-5deg);
+        }
+
+        /* Fade-in animation for form */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title">Welcome to Library Management System</div>
+
+    <div class="form-container">
+        <h2>Sign up</h2>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <span class="icon">👤</span>
+                <input type="text" name="username" id="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <span class="icon">🔒</span>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn">Sign up</button>
+        </form>
+        <a href="/login" class="signup-link">Already a user? Login</a>
+    </div>
+</body>
+</html>

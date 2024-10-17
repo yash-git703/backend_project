@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background:linear-gradient(45deg,rgb(194, 190, 237),rgb(16, 3, 50));
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out; /* Animation for dashboard appearance */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+ 
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: 1s  ease-forwards; /* Animation for logo */
+        } 
+
+        @keyframes rotateLogo {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateY(100deg);
+            }
+        }
+
+        .search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px 0 0 5px; /* Rounded corners on the left side */
+    transition: box-shadow 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+    box-shadow: 0px 0px 8px rgba(52, 152, 219, 0.7);
+}
+
+.search-bar button {
+    padding: 10px 15px;
+    background:linear-gradient(45deg,rgb(41, 78, 178),rgb(38, 6, 91)) ;
+    color: white;
+    /* border: 1px solid #3498db; */
+    border-radius: 0 5px 5px 0; /* Rounded corners on the right side */
+    cursor: pointer;
+    margin-left: -1px; /* Reduce the margin between the button and input */
+    transition: transform 0.1s ease;
+    /* border: none; */
+}
+
+.search-bar button:active {
+    transform: scale(0.95);
+}
+.search-bar button:hover{
+    background:#007BFF ;
+}
+
+/* Add Book button */
+.add-book-btn {
+    padding: 10px 15px;
+    background:linear-gradient(45deg,green,lightgreen) ;
+  
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 30px; /* Distance from the search button */
+    transition: transform 0.1s ease;
+    text-decoration: none;
+}
+
+.add-book-btn:hover{
+    background: #2ecc71;
+}
+.add-book-btn:active {
+    transform: scale(0.95);
+}
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            animation: fadeInTable 1.5s ease-in-out; /* Fade-in animation for the table */
+        }
+
+        @keyframes fadeInTable {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f9fa;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #d7e6e9;
+        }
+
+        tr:hover {
+            background-color: #b5cdd9;
+            transition: background-color 0.3s ease;
+        }
+
+        .actions button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            transition: transform 0.1s ease, background-color 0.3s ease;
+        }
+
+        .actions button:active {
+            transform: scale(0.95);
+        }
+
+        .update-btn {
+            background:linear-gradient(45deg,#094e14,rgb(49, 157, 48));
+            color: white;
+        }
+
+        .update-btn:hover {
+            background: #27ae60;
+        }
+
+        .delete-btn {
+            background:linear-gradient(45deg,#d0240e,rgb(216, 111, 83));
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #d72b18;
+
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background: #007BFF; ;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background:linear-gradient(45deg,#251687,rgb(35, 98, 156));
+        
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none; /* Remove underline for links */
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background-color: #007BFF;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background:linear-gradient(45deg,rgb(232, 208, 22),rgb(149, 193, 46)); 
+            padding: 4px 20PX;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Small shadow */
+            position: fixed; 
+            top: 0;
+            width: 92%;
+            z-index: 100;
+            margin-right: 20%; /* Ensure it stays on top */
+        }
+
+        /* Styling for the left side (logo/title) */
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333; /* Dark text */
+     margin-top: 10px;
+        }
+
+        /* Styling for the right side (greeting and logout button) */
+        .right {
+            display: flex;
+            align-items: left;
+        }
+
+        .greeting {
+            margin-right: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            /* margin-top: -3%; */
+            justify-content: center;
+        }
+
+        .logout-btn {
+            padding: 8px 15px;
+            background: linear-gradient(45deg, #ff4b5c, #ff6b6b); /* Gradient for button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+             align-items: center;
+             margin-top: 10px;
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(45deg, #ff6b6b, #a20f1d); /* Hover effect */
+        }
+
+        /* Ensure content appears below the fixed navbar */
+        .content {
+            padding-top: 60px; /* Space for the fixed navbar */
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .search-bar input[type="text"] {
+                width: 100%;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            .actions button {
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">📚 Library Dashboard</div>
+
+
+<!-- You can include a library like FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+    <div class="navbar">
+        <div class="logo">📚 Library Dashboard</div>
+        <div class="right">
+            <p class="greeting">Welcome, User!</p>
+            <form action="/login" method="POST" style="display: inline;">
+                <button class="logout-btn">
+                    <a href="/login" style="color: white; text-decoration: none;">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                    </a>
+                </button>
+                
+            </form>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <form action="/search" method="GET">
+            <input type="text" name="search" placeholder="Search by ID or Genre">
+            <button type="submit">Search</button>
+        </form>
+        <a  href="/add" class="add-book-btn">Add Book</a>
+        
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Available Copies</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(function(book) { %>
+                <tr>
+                    <td><%= book._id %></td>
+                    <td><%= book.title %></td>
+                    <td><%= book.author %></td>
+                    <td><%= book.genre %></td>
+                    <td><%= book.availableCopies %></td>
+                    <td class="actions">
+                        <button class="update-btn" onclick="window.location.href='/update/<%= book._id %>'">Update</button>
+                        <button class="delete-btn" onclick="confirmDelete('/delete/<%= book._id %>')">Delete</button>
+                    </td>
+                    
+               
+                    </td>
+                </tr>
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+    <script>
+        function confirmDelete(url) {
+            if (confirm("Are you sure you want to delete this book?")) {
+                window.location.href = url; // Redirects to the delete URL if confirmed
+            }
+        }
+    </script>
+
+    <a href="/dashboard" class="back-button">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Generated</title>
+    <style>
+        /* Center the box */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        /* Box styling */
+        .token-box {
+            background-color: #fff;
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .token-box p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Success styling */
+        .success-message {
+            font-size: 18px;
+            color: #4CAF50;
+        }
+
+        /* Timer styling */
+        .timer {
+            font-size: 16px;
+            font-weight: bold;
+            color: #FF5733;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="token-box">
+            <p class="success-message">Your account was created successfully!</p>
+            <p>Here is your JWT token:</p>
+            <p><strong><%= token %></strong></p>
+            <p>You will be redirected to the login page in <span id="countdown">5</span> seconds...</p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize countdown time (in seconds)
+        let countdownTime = 5;
+
+        // Update countdown every second
+        const countdownElement = document.getElementById('countdown');
+        const countdownInterval = setInterval(() => {
+            countdownTime--; // Decrease time
+            countdownElement.textContent = countdownTime; // Update the HTML content
+
+            // If countdown reaches 0, redirect to the login page
+            if (countdownTime <= 0) {
+                clearInterval(countdownInterval); // Clear the interval
+                window.location.href = '/login'; // Redirect to login
+            }
+        }, 1000); // 1000 milliseconds = 1 second
+    </script>
+</body>
+</html>

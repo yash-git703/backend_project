@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .book {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .book:last-child {
+            border-bottom: none;
+        }
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .book-details {
+            margin-top: 5px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Search Results</h1>
+        <% if (books.length > 0) { %>
+            <% books.forEach(function(book) { %>
+                <div class="book">
+                    <p class="book-title"><%= book.title %></p>
+                    <p class="book-details">Author: <%= book.author %></p>
+                    <p class="book-details">Genre: <%= book.genre %></p>
+                    <p class="book-details">Available Copies: <%= book.availableCopies %></p>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No books found for the search query.</p>
+        <% } %>
+    </div>
+
+</body>
+</html>
